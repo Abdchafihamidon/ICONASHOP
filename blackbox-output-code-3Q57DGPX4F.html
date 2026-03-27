@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdo Shopping - متجر إلكتروني أنيق للملابس والإكسسوارات النسائية والرجالية</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        main {
+            margin-top: 80px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f0f0" width="1200" height="600"/><text x="600" y="300" font-family="Arial" font-size="48" fill="%23667eea" text-anchor="middle" dy=".3em">صورة رئيسية أنيقة</text></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 250px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #999;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .add-to-cart:hover {
+            opacity: 0.9;
+        }
+
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 1rem;
+            color: #667eea;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Abdo Shopping</a>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#women">نسائي</a></li>
+                <li><a href="#men">رجالي</a></li>
+                <li><a href="#accessories">إكسسوارات</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div>
+                <h1>Abdo Shopping</h1>
+                <p>أناقة لا حدود لها للنساء والرجال</p>
+            </div>
+        </section>
+
+        <section class="categories">
+            <div class="category-card" onclick="filterProducts('women')">
+                <div class="category-icon">👗</div>
+                <h3>ملابس نسائية</h3>
+            </div>
+            <div class="category-card" onclick="filterProducts('men')">
+                <div class="category-icon">👔</div>
+                <h3>ملابس رجالية</h3>
+            </div>
+            <div class="category-card" onclick="filterProducts('accessories')">
+                <div class="category-icon">💍</div>
+                <h3>إكسسوارات</h3>
+            </div>
+            <div class="category-card" onclick="filterProducts('all')">
+                <div class="category-icon">🛍️</div>
+                <h3>الكل</h3>
+            </div>
+        </section>
+
+        <section class="products" id="products">
+            <!-- المنتجات ستُضاف ديناميكياً بواسطة JavaScript -->
+        </section>
+    </main>
+
+    <!-- نافذة السلة -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <h2>سلة التسوق</h2>
+            <div id="cartItems"></div>
+            <div class="total" id="cartTotal">الإجمالي: 0 ريال</div>
+            <button class="checkout-btn" onclick="checkout()">إتمام الشراء</button>
+            <button onclick="toggleCart()" style="margin-top: 1rem; background: #e74c3c; color: white; border: none; padding: 0.8rem; border-radius: 8px; cursor: pointer;">إغلاق</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Abdo Shopping. جميع الحقوق محفوظة. | تصميم أنيق وحديث</p>
+    </footer>
+
+    <script>
+        // بيانات المنتجات
+        const products = [
+            { id: 1, name: 'فستان أنيق', price: 250, category: 'women', image: '👗' },
+            { id: 2, name: 'بدلة رجالية', price: 450, category: 'men', image: '👔' },
+            { id: 3, name: 'حقيبة يد', price: 180, category: 'accessories', image: '👜' },
+            { id: 4, name: 'بلوزة حرير', price: 120, category: 'women', image: '👚' },
+            { id: 5, name: 'قميص كتان', price: 95, category: 'men', image: '👕' },
+            { id: 6, name: 'ساعة ذكية', price: 350, category: 'accessories', image: '⌚' },
+            { id: 7, name: 'تنورة قصيرة', price: 160, category: 'women', image: '👗' },
+            { id: 8, name: 'بنطلون جينز', price: 220, category: 'men', image: '👖' },
+            { id: 9, name: 'قلادة ذهبية', price: 280, category: 'accessories', image: '💍' }
+        ];
+
+        let cart = [];
+        let currentFilter = 'all';
+
+        // عرض المنتجات
+        function displayProducts(filter = 'all') {
+            const container = document.getElementById('products');
+            container.innerHTML = '';
+
+            const filteredProducts = filter === 'all' ? products : products.filter(p => p.category === filter);
+
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">${product.image}</div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">${product.price} ريال</div>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">أضف للسلة</button>
+                    </div>
+                `;
+                container.appendChild(productCard);
+            });
+        }
+
+        // إضافة للسلة
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartCount();
+            alert('تم إضافة المنتج للسلة!');
+        }
+
+        // تحديث عداد السلة
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        // تبديل نافذة السلة
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+            if (modal.style.display === 'flex') {
+                displayCart();
+            }
+        }
+
+        // عرض محتويات السلة
+        function displayCart() {
+            const cartItems = document.getElementById('cartItems');
+            const total = document.getElementById('cartTotal');
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>السلة فارغة</p>';
+                total.textContent = 'الإجمالي: 0 ريال';
+                return;
+            }
+
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <span>${item.name} (x${item.quantity})</span>
+                    <span>${item.price * item.quantity} ريال</span>
+                    <button onclick="removeFromCart(${item.id})" style="background: #e74c3c; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 4px; cursor: pointer;">حذف</button>
+                </div>
+            `).join('');
+
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            total.textContent = `الإجمالي: ${totalPrice} ريال`;
+        }
+
+        // حذف من السلة
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartCount();
+            displayCart();
+        }
+
+        // إتمام الشراء
+        function checkout() {
+            if (cart.length === 0) {
+                alert('السلة فارغة!');
+                return;
+            }
+            alert('شكراً لك! تمت عملية الشراء بنجاح. سيتم التواصل معك قريباً.');
+            cart = [];
+            updateCartCount();
+            toggleCart();
+        }
+
+        // تصفية المنتجات
+        function filterProducts(category) {
+            currentFilter = category;
+            displayProducts(category);
+        }
+
+        // تهيئة الصفحة
+        displayProducts();
+        updateCartCount();
+
+        // إغلاق النافذة عند الضغط خارجها
+        window.onclick = function(event) {
+            const modal = document.getElementById('cartModal');
+            if (event.target === modal) {
+                toggleCart();
+            }
+        }
+    </script>
+</body>
+</html>
