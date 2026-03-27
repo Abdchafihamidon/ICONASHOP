@@ -339,15 +339,9 @@
     <script>
         // بيانات المنتجات
         const products = [
-            { id: 1, name: 'فستان أنيق', price: 250, category: 'women', image: '👗' },
-            { id: 2, name: 'بدلة رجالية', price: 450, category: 'men', image: '👔' },
-            { id: 3, name: 'حقيبة يد', price: 180, category: 'accessories', image: '👜' },
-            { id: 4, name: 'بلوزة حرير', price: 120, category: 'women', image: '👚' },
-            { id: 5, name: 'قميص كتان', price: 95, category: 'men', image: '👕' },
-            { id: 6, name: 'ساعة ذكية', price: 350, category: 'accessories', image: '⌚' },
-            { id: 7, name: 'تنورة قصيرة', price: 160, category: 'women', image: '👗' },
-            { id: 8, name: 'بنطلون جينز', price: 220, category: 'men', image: '👖' },
-            { id: 9, name: 'قلادة ذهبية', price: 280, category: 'accessories', image: '💍' }
+            
+            {id: 1, name: 'حقيبة يد' , price: 250, category: 'women',image: ' handbag ' },
+            
         ];
 
         let cart = [];
@@ -412,7 +406,7 @@
 
             if (cart.length === 0) {
                 cartItems.innerHTML = '<p>السلة فارغة</p>';
-                total.textContent = 'الإجمالي: 0 ريال';
+                total.textContent ='الإجمالي: 0 ريال';
                 return;
             }
 
