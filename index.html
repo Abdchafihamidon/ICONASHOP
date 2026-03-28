@@ -292,7 +292,7 @@
     <main>
         <section class="hero" id="home">
             <div>
-                <h1>iconasop</h1>
+                <h1>iconashop</h1>
                 <p>أناقة لا حدود لها للنساء والرجال</p>
             </div>
         </section>
@@ -326,7 +326,7 @@
         <div class="cart-content">
             <h2>سلة التسوق</h2>
             <div id="cartItems"></div>
-            <div class="total" id="cartTotal">الإجمالي: 01000درهم</div>
+            <div class="total" id="cartTotal">الإجمالي: 1000درهم</div>
             <button class="checkout-btn" onclick="checkout()">إتمام الشراء</button>
             <button onclick="toggleCart()" style="margin-top: 1rem; background: #e74c3c; color: white; border: none; padding: 0.8rem; border-radius: 8px; cursor: pointer;">إغلاق</button>
         </div>
@@ -341,7 +341,7 @@
         const products = [
             
             {id: 1, name: 'حقيبة يد' , price: 250, category: 'women',image: ' images/handbag.jpeg ' },
-            {id: 2, name: 'bags' , price: 450, categorey: 'women' ,image: ' images/bags.jpeg ' },
+            {id: 2, name: 'bags' , price: 450, categorey: 'women' ,image: bags.jpeg },
             
         ];
 
@@ -362,7 +362,7 @@
                     <div class="product-image">${product.image}</div>
                     <div class="product-info">
                         <h3 class="product-title">${product.name}</h3>
-                        <div class="product-price">${product.price} ريال</div>
+                        <div class="product-price">${product.price} درهم</div>
                         <button class="add-to-cart" onclick="addToCart(${product.id})">أضف للسلة</button>
                     </div>
                 `;
